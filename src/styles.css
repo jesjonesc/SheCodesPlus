@@ -141,4 +141,14 @@ body {
     margin-top: 10px;
     font-size: 10pt;
   }
+  #footer-github-link{
+      text-align: center;
+      position: fixed;
+      bottom: 10px;
+      text-decoration: none;
+      color: #5a6275;
+    }
+#footer-github-link:hover{
+    color: #b4b6b8;
+    }
   
