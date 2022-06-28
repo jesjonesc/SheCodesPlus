@@ -1,0 +1,144 @@
+body {
+    background-color: #d9edfe;
+    font-family: "Hind Siliguri", sans-serif;
+  }
+  
+  .searchBox {
+    margin-top: 20px;
+    width: 100%;
+  }
+  .searchBox form {
+    display: block;
+    margin: auto;
+    width: 60%;
+  }
+  .searchField {
+    width: 75%;
+    background: transparent;
+    border: #bbdffb solid 3px;
+    font-size: 10pt;
+    padding: 5px;
+    border-radius: 3px;
+  }
+  .searchButton {
+    width: 23%;
+    background: #bbdffb;
+    border: #bbdffb solid 4px;
+    padding: 6px 0;
+    font-size: 10pt;
+    border-radius: 3px;
+  }
+  .searchButton:hover {
+    background-color: #c3e0fa;
+    border: #c3e0fa solid 4px;
+  }
+  .searchBox form a {
+    color: #5a6275;
+    display: inline;
+    font-size: 10pt;
+    text-decoration: none;
+  }
+  
+  .searchBox form a:hover {
+    color: #b4b6b8;
+  }
+  
+  .scale {
+    margin-top: 5px;
+    font-size: 18px;
+    display: inline;
+    float: right;
+    margin-right: 20px;
+  }
+  .scale a {
+    color: black;
+    text-decoration: none;
+    color: #5a6275;
+  }
+  
+  .scale a:hover {
+    color: #b4b6b8;
+    text-decoration: none;
+  }
+  
+  .weatherTodayWrap {
+    display: block;
+    margin: auto;
+    width: 100%;
+  }
+  .weatherTodayContainer {
+    width: 60%;
+    display: block;
+    margin: auto;
+    margin-top: 20px;
+    max-width: 400px;
+  }
+  .weatherPositioning {
+    width: 75%;
+  }
+  .leftBox {
+    float: left;
+  }
+  .leftBox h2 {
+    font-weight: 500;
+    text-transform: capitalize;
+    margin-bottom: 0;
+  }
+  .leftBox p {
+    font-weight: 400;
+    color: #5a6275;
+    font-size: 12pt;
+  }
+  .rightBox {
+    margin-right: 0;
+  }
+  .rightBox h2 {
+    font-weight: 500;
+    margin-bottom: 0;
+  }
+  .rightBox {
+    text-align: right;
+  }
+  .rightBox p {
+    color: #5a6275;
+    font-size: 14px;
+    line-height: 16px;
+  }
+  .centralBox {
+    margin: auto;
+    display: block;
+    width: 50px;
+  }
+  
+  .centralBox h2 {
+    font-size: 40px;
+    opacity: 70%;
+    position: absolute;
+    z-index: -1;
+  }
+  
+  .forecast {
+    margin-top: 20px;
+    color: #5a6275;
+    border: #bbdffb solid 3px;
+    padding: 15px;
+    background-color: #d4e9fd;
+  }
+  .forecast:hover {
+    background-color: #bbdffb;
+  }
+  
+  .forecast h6 {
+    margin-bottom: 10px;
+  }
+  .forecast h1,
+  h2 {
+    display: inline;
+    font-weight: 300;
+    font-size: 20px;
+  }
+  .forecast p {
+    margin-top: 10px;
+    font-size: 10pt;
+  }
+  
