@@ -67,10 +67,7 @@ function currentWeather(city) {
     let forecast_min_temp = document.querySelectorAll(".min-temp");
     let forecast_max_temp = document.querySelectorAll(".max-temp");
     let forecast_wind = document.querySelectorAll(".wind");
-    let new_day = new Date(now);
     let clouds_emoji = document.querySelectorAll(".clouds-emoji");
-    let new_month = null;
-    let new_date = null;
     forecast_temp.forEach(function(el,day){
       let response_data = response.data.daily[day];
           forecast_temp[day].innerHTML = Math.round(response_data.temp.day);
