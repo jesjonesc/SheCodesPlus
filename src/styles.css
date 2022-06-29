@@ -87,7 +87,8 @@ body {
   .leftBox p {
     font-weight: 400;
     color: #5a6275;
-    font-size: 12pt;
+    font-size: 14px;
+    line-height: 16px;
   }
   .rightBox {
     margin-right: 0;

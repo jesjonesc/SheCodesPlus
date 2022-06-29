@@ -81,7 +81,8 @@ function currentWeather(city) {
     let clouds_emoji = document.querySelectorAll(".clouds-emoji");
     let new_month = null;
     let new_date = null;
-    forecast_temp.forEach(function(day){
+    forecast_temp.forEach(function(el,day){
+      
       new_day.setDate(new_day.getDate() + 1);
   
       if (new_day.getMonth() < 9) {
@@ -94,17 +95,16 @@ function currentWeather(city) {
       } else {
         new_date = new_day.getDate();
       }
-      response.data.list.forEach(function (day, index) {
-        console.log(forecast_temp[day]);
+      response.data.list.forEach(function (element,index) {
         if (
-          response.data.list[index].dt_txt ===
+          element.dt_txt ===
           `${new_day.getFullYear()}-${new_month}-${new_date} 12:00:00`
         ) {
           forecast_temp[day].innerHTML = Math.round(
-            response.data.list[index].main.temp
+            element.main.temp
           );
           forecast_wind[day].innerHTML = Math.round(
-            response.data.list[index].wind.speed
+            element.wind.speed
           );
   
           let min_temp = [];
@@ -208,7 +208,7 @@ function currentWeather(city) {
   let month = months[now.getMonth()];
   let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   let day = days[now.getDay()];
-  currentTime.innerHTML = `${day}, ${now.getDate()} ${month}`;
+  currentTime.innerHTML = `Last updated:<br>${day}, ${now.getDate()} ${month} ${now.getHours()}:${now.getMinutes()}`;
   
   let tomorrow = new Date(now);
   let weekDay = document.querySelectorAll(".week-day");
