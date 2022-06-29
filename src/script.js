@@ -35,51 +35,48 @@ function currentWeather(city) {
     forecast(response.data.coord);
   }
   function showForecastHTML(){
-    let forecast_element = document.querySelector("#forecast");
-    let forecastHTML = `<div class="row d-flex justify-content-center">`;
-    for(i=0;i<6;i++){
-      forecastHTML = forecastHTML + `<div class="col-4 col-md-3 col-lg-2">
-      <div class="forecast">
-        <h6 class="week-day"></h6>
-        <h2>
-          <span class="temperature forecast-temp"></span
-          ><span class="temperature-scale">°C</span>
-        </h2>
-        <h1 class="clouds-emoji"></h1>
-        <p>
-          Max: <span class="temperature max-temp"></span
-          ><span class="temperature-scale">°C</span> <br />
-
-          Min: <span class="temperature min-temp"></span
-          ><span class="temperature-scale">°C</span> <br />
-
-          Wind: <span class="wind"></span> km/h
-        </p>
-      </div>
-    </div>`;
-    }
-    forecastHTML=forecastHTML+`</div>`
-    forecast_element.innerHTML=forecastHTML;
+    
     
   }
   function showForecast(response) {
-    let forecast_temp = document.querySelectorAll(".forecast-temp");
-    let forecast_min_temp = document.querySelectorAll(".min-temp");
-    let forecast_max_temp = document.querySelectorAll(".max-temp");
-    let forecast_wind = document.querySelectorAll(".wind");
-    let clouds_emoji = document.querySelectorAll(".clouds-emoji");
-    forecast_temp.forEach(function(el,day){
-      let response_data = response.data.daily[day];
-          forecast_temp[day].innerHTML = Math.round(response_data.temp.day);
-          forecast_wind[day].innerHTML = Math.round(response_data.wind_speed);
-          forecast_min_temp[day].innerHTML = Math.round(response_data.temp.min);
-          forecast_max_temp[day].innerHTML = Math.round(response_data.temp.max);
-          clouds_emoji[day].innerHTML = `<img src="https://openweathermap.org/img/wn/${response_data.weather[0].icon}@2x.png" alt="${response_data.weather[0].main}" width=60>`;
     
-    }
-  )}
+    let response_data = response.data.daily;
+    let forecast_element = document.querySelector("#forecast");
+    let forecastHTML = `<div class="row d-flex justify-content-center">`;
+    let tomorrow = new Date(now);
+    response_data.shift();
+    response_data.forEach(function (el, day){
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      console.log(response_data[day]);
+      forecastHTML = forecastHTML + `<div class="col-4 col-md-3 col-lg-2">
+      <div class="forecast">
+        <h6 class="week-day">${
+        days[tomorrow.getDay()]
+      }, ${tomorrow.getDate()} ${months[tomorrow.getMonth()]}</h6>
+        <h2>
+          <span class="temperature forecast-temp">${Math.round(response_data[day].temp.day)}</span
+          ><span class="temperature-scale">°C</span>
+        </h2>
+        <h1 class="clouds-emoji"><img src="https://openweathermap.org/img/wn/${response_data[day].weather[0].icon}@2x.png" alt="${response_data[day].weather[0].main}" width=60></h1>
+        <p>
+          Max: <span class="temperature max-temp">${Math.round(response_data[day].temp.max)}</span
+          ><span class="temperature-scale">°C</span> <br />
+
+          Min: <span class="temperature min-temp">${Math.round(response_data[day].temp.min)}</span
+          ><span class="temperature-scale">°C</span> <br />
+
+          Wind: <span class="wind">${Math.round(response_data[day].wind_speed)}</span> km/h
+        </p>
+      </div>
+    </div>`;
+    });
+    forecastHTML=forecastHTML+`</div>`
+    forecast_element.innerHTML=forecastHTML;
+  }
+  
   function forecast(coordinates) {
-    let forecastApiURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&exclude=hourly,minutely&appid=${weather_appid}&units=${units}`
+    let forecastApiURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&exclude=current,hourly,minutely,alerts&appid=${weather_appid}&units=${units}`
+    console.log(forecastApiURL);
     axios.get(forecastApiURL).then(showForecast);
     axios.get(forecastApiURL).catch((data, status) => {
       console.log("Something is wrong");
@@ -151,14 +148,4 @@ function currentWeather(city) {
   let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   let day = days[now.getDay()];
   currentTime.innerHTML = `Last updated:<br>${day}, ${now.getDate()} ${month} ${now.getHours()}:${now.getMinutes()}`;
-  
-  let tomorrow = new Date(now);
-  let weekDay = document.querySelectorAll(".week-day");
-  
-  weekDay.forEach(function (day, index) {
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    weekDay[index].innerHTML = `${
-      days[tomorrow.getDay()]
-    }, ${tomorrow.getDate()} ${months[tomorrow.getMonth()]}`;
-  });
   
