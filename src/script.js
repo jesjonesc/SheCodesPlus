@@ -108,6 +108,7 @@ function currentWeather(city) {
       alert("Please type correct city");
       showCurrentLocation();
     });
+    search_field.value= "";
   }
   let searchForm = document.querySelector("#search-form");
   searchForm.addEventListener("submit", search);
