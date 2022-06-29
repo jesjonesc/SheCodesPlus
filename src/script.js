@@ -1,7 +1,6 @@
 function currentWeather(city) {
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${weather_appid}&units=${units}`;
     axios.get(apiUrl).then(showTemperature);
-    forecast(city);
 }
   function changeToCelsius() {
     temp.forEach(
@@ -32,22 +31,13 @@ function currentWeather(city) {
     current_min_temp.innerHTML = Math.round(response.data.main.temp_min);
     let current_max_temp = document.querySelector("#current-max-temp");
     current_max_temp.innerHTML = Math.round(response.data.main.temp_max);
-    if (response.data.clouds.all < 20) {
-      if (response.data.weather[0].main === "Rain") {
-        current_emoji.innerHTML = "🌧";
-        console.log("hi");
-      }
-      current_emoji.innerHTML = "☀️";
-    } else if (response.data.clouds.all > 20 && response.data.clouds.all < 80) {
-      current_emoji.innerHTML = "🌤";
-    } else {
-      current_emoji.innerHTML = "☁️";
-    }
+    current_emoji.innerHTML = `<img src="https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png" alt="${response.data.weather[0].main}" width=80>`;
+    forecast(response.data.coord);
   }
   function showForecastHTML(){
     let forecast_element = document.querySelector("#forecast");
     let forecastHTML = `<div class="row d-flex justify-content-center">`;
-    for(i=0;i<4;i++){
+    for(i=0;i<6;i++){
       forecastHTML = forecastHTML + `<div class="col-4 col-md-3 col-lg-2">
       <div class="forecast">
         <h6 class="week-day"></h6>
@@ -82,61 +72,17 @@ function currentWeather(city) {
     let new_month = null;
     let new_date = null;
     forecast_temp.forEach(function(el,day){
-      
-      new_day.setDate(new_day.getDate() + 1);
-  
-      if (new_day.getMonth() < 9) {
-        new_month = `0${new_day.getMonth() + 1}`;
-      } else {
-        new_month = new_day.getMonth() + 1;
-      }
-      if (new_day.getDate() < 10) {
-        new_date = `0${new_day.getDate()}`;
-      } else {
-        new_date = new_day.getDate();
-      }
-      response.data.list.forEach(function (element,index) {
-        if (
-          element.dt_txt ===
-          `${new_day.getFullYear()}-${new_month}-${new_date} 12:00:00`
-        ) {
-          forecast_temp[day].innerHTML = Math.round(
-            element.main.temp
-          );
-          forecast_wind[day].innerHTML = Math.round(
-            element.wind.speed
-          );
-  
-          let min_temp = [];
-          let max_temp = [];
-          for (let j = 0; j < 8; j++) {
-            min_temp[j] = response.data.list[index - 4 + j].main.temp_min;
-          }
-          for (let j = 0; j < 8; j++) {
-            max_temp[j] = response.data.list[index - 4 + j].main.temp_max;
-          }
-  
-          forecast_min_temp[day].innerHTML = Math.round(Math.min(...min_temp));
-          forecast_max_temp[day].innerHTML = Math.round(Math.max(...max_temp));
-          if (response.data.list[index].clouds.all > 80) {
-            if (response.data.list[index].weather.main === "Rain") {
-              clouds_emoji[day].innerHTML = "🌧";
-            }
-            clouds_emoji[day].innerHTML = "☁️";
-          } else if (
-            response.data.list[index].clouds.all > 20 &&
-            response.data.list[index].clouds.all < 80
-          ) {
-            clouds_emoji[day].innerHTML = "🌤";
-          } else {
-            clouds_emoji[day].innerHTML = "☀️";
-          }
-        }
-      });
+      let response_data = response.data.daily[day];
+          forecast_temp[day].innerHTML = Math.round(response_data.temp.day);
+          forecast_wind[day].innerHTML = Math.round(response_data.wind_speed);
+          forecast_min_temp[day].innerHTML = Math.round(response_data.temp.min);
+          forecast_max_temp[day].innerHTML = Math.round(response_data.temp.max);
+          clouds_emoji[day].innerHTML = `<img src="https://openweathermap.org/img/wn/${response_data.weather[0].icon}@2x.png" alt="${response_data.weather[0].main}" width=60>`;
+    
     }
   )}
-  function forecast(city_name) {
-    let forecastApiURL = `https://api.openweathermap.org/data/2.5/forecast?q=${city_name}&appid=${weather_appid}&units=${units}`;
+  function forecast(coordinates) {
+    let forecastApiURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&exclude=hourly,minutely&appid=${weather_appid}&units=${units}`
     axios.get(forecastApiURL).then(showForecast);
     axios.get(forecastApiURL).catch((data, status) => {
       console.log("Something is wrong");
@@ -164,7 +110,6 @@ function currentWeather(city) {
       .get(apiUrl)
       .then(showTemperature)
       .then((current_city.innerHTML = search_field.value))
-      .then(forecast(search_field.value));
     axios.get(apiUrl).catch((data, status) => {
       alert("Please type correct city");
       showCurrentLocation();

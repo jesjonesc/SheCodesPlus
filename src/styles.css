@@ -108,15 +108,16 @@ body {
   .centralBox {
     margin: auto;
     display: block;
-    width: 50px;
+    width: 80px;
   }
   
-  .centralBox h2 {
-    font-size: 40px;
-    opacity: 70%;
+  .centralBox h1 {
+    opacity: 80%;
     position: absolute;
     z-index: -1;
+    margin-top: -15px;
   }
+  
   
   .forecast {
     margin-top: 20px;
@@ -138,8 +139,14 @@ body {
     font-weight: 300;
     font-size: 20px;
   }
+  .clouds-emoji{
+    opacity: 80%;
+    float: right;
+    margin-top: -15px;
+
+  }
+  
   .forecast p {
-    margin-top: 10px;
     font-size: 10pt;
   }
   #footer-github-link{
