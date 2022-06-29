@@ -142,7 +142,9 @@ body {
   .clouds-emoji{
     opacity: 80%;
     float: right;
-    margin-top: -15px;
+    margin-top: -20px;
+    margin-left: 5px;
+    position:fixed;
   }
   
   .forecast p {
@@ -173,3 +175,6 @@ text-decoration: none;
   color: #5a6275;
 }
 
+#forecast{
+  max-width: 1000px;
+}

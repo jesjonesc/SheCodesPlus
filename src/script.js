@@ -48,7 +48,7 @@ function currentWeather(city) {
     response_data.forEach(function (el, day){
       tomorrow.setDate(tomorrow.getDate() + 1);
       console.log(response_data[day]);
-      forecastHTML = forecastHTML + `<div class="col-4 col-md-3 col-lg-2">
+      forecastHTML = forecastHTML + `<div class="col-4 col-lg-2 col-sm-3">
       <div class="forecast">
         <h6 class="week-day">${
         days[tomorrow.getDay()]
