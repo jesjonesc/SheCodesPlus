@@ -125,10 +125,10 @@ body {
     color: #5a6275;
     border: #bbdffb solid 3px;
     padding: 15px;
-    background-color: #d4e9fd;
+    background-color: #bbdffb;
   }
   .forecast:hover {
-    background-color: #bbdffb;
+    background-color: #d4e9fd;
   }
   
   .forecast h6 {
@@ -145,7 +145,7 @@ body {
     float: right;
     margin-top: -20px;
     margin-left: 5px;
-    position:fixed;
+    position:absolute;
   }
   
   .forecast p {
@@ -162,9 +162,10 @@ body {
     color: #b4b6b8;
 }
 #footer-github-link{
+  background-color: #d9edfe;
   width: 100%;
+  bottom: 0;
   position: fixed;
-  bottom: 10px;
   text-align: center;
 
 }
@@ -178,4 +179,5 @@ text-decoration: none;
 
 #forecast{
   max-width: 1000px;
+  margin-bottom: 50px;
 }
