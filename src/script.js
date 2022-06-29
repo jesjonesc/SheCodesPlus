@@ -48,7 +48,7 @@ function currentWeather(city) {
     response_data.forEach(function (el, day){
       tomorrow.setDate(tomorrow.getDate() + 1);
       console.log(response_data[day]);
-      forecastHTML = forecastHTML + `<div class="col-4 col-lg-2 col-sm-3">
+      forecastHTML = forecastHTML + `<div class="forecast-wrap">
       <div class="forecast">
         <h6 class="week-day">${
         days[tomorrow.getDay()]
@@ -59,13 +59,11 @@ function currentWeather(city) {
         </h2>
         <h1 class="clouds-emoji"><img src="https://openweathermap.org/img/wn/${response_data[day].weather[0].icon}@2x.png" alt="${response_data[day].weather[0].main}" width=60></h1>
         <p>
-          Max: <span class="temperature max-temp">${Math.round(response_data[day].temp.max)}</span
-          ><span class="temperature-scale">°C</span> <br />
+          Max: ${Math.round(response_data[day].temp.max)}<span class="temperature-scale">°C</span> <br />
 
-          Min: <span class="temperature min-temp">${Math.round(response_data[day].temp.min)}</span
-          ><span class="temperature-scale">°C</span> <br />
+          Min: ${Math.round(response_data[day].temp.min)}<span class="temperature-scale">°C</span> <br />
 
-          Wind: <span class="wind">${Math.round(response_data[day].wind_speed)}</span> km/h
+          Wind: ${Math.round(response_data[day].wind_speed)} km/h
         </p>
       </div>
     </div>`;
@@ -137,8 +135,8 @@ function currentWeather(city) {
     "Mar",
     "Apr",
     "May",
-    "June",
-    "July",
+    "Jun",
+    "Jul",
     "Aug",
     "Sep",
     "Oct",

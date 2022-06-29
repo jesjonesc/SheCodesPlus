@@ -118,14 +118,22 @@ body {
     z-index: -1;
     margin-top: -15px;
   }
-  
-  
+  #forecast{
+    margin-bottom: 50px;
+  }
+  .forecast-wrap{
+    width: fit-content;
+  }
   .forecast {
+    display: inline-block;
+    line-height: normal;
+    vertical-align: middle;
     margin-top: 20px;
     color: #5a6275;
     border: #bbdffb solid 3px;
-    padding: 15px;
+    padding: 15px 30px 15px 15px;
     background-color: #bbdffb;
+    border-radius: 50% 20% / 10% 40%;
   }
   .forecast:hover {
     background-color: #d4e9fd;
@@ -150,6 +158,7 @@ body {
   
   .forecast p {
     font-size: 10pt;
+
   }
   #footer-github-link{
       text-align: center;
@@ -177,7 +186,3 @@ text-decoration: none;
   color: #5a6275;
 }
 
-#forecast{
-  max-width: 1000px;
-  margin-bottom: 50px;
-}
