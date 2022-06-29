@@ -2,7 +2,7 @@ function currentWeather(city) {
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${weather_appid}&units=${units}`;
     axios.get(apiUrl).then(showTemperature);
     forecast(city);
-  }
+}
   function changeToCelsius() {
     temp.forEach(
       (element) =>
@@ -44,6 +44,34 @@ function currentWeather(city) {
       current_emoji.innerHTML = "☁️";
     }
   }
+  function showForecastHTML(){
+    let forecast_element = document.querySelector("#forecast");
+    let forecastHTML = `<div class="row d-flex justify-content-center">`;
+    for(i=0;i<4;i++){
+      forecastHTML = forecastHTML + `<div class="col-4 col-md-3 col-lg-2">
+      <div class="forecast">
+        <h6 class="week-day"></h6>
+        <h2>
+          <span class="temperature forecast-temp"></span
+          ><span class="temperature-scale">°C</span>
+        </h2>
+        <h1 class="clouds-emoji"></h1>
+        <p>
+          Max: <span class="temperature max-temp"></span
+          ><span class="temperature-scale">°C</span> <br />
+
+          Min: <span class="temperature min-temp"></span
+          ><span class="temperature-scale">°C</span> <br />
+
+          Wind: <span class="wind"></span> km/h
+        </p>
+      </div>
+    </div>`;
+    }
+    forecastHTML=forecastHTML+`</div>`
+    forecast_element.innerHTML=forecastHTML;
+    
+  }
   function showForecast(response) {
     let forecast_temp = document.querySelectorAll(".forecast-temp");
     let forecast_min_temp = document.querySelectorAll(".min-temp");
@@ -53,7 +81,7 @@ function currentWeather(city) {
     let clouds_emoji = document.querySelectorAll(".clouds-emoji");
     let new_month = null;
     let new_date = null;
-    for (let i = 0; i < 5; i++) {
+    forecast_temp.forEach(function(day){
       new_day.setDate(new_day.getDate() + 1);
   
       if (new_day.getMonth() < 9) {
@@ -67,14 +95,15 @@ function currentWeather(city) {
         new_date = new_day.getDate();
       }
       response.data.list.forEach(function (day, index) {
+        console.log(forecast_temp[day]);
         if (
           response.data.list[index].dt_txt ===
           `${new_day.getFullYear()}-${new_month}-${new_date} 12:00:00`
         ) {
-          forecast_temp[i].innerHTML = Math.round(
+          forecast_temp[day].innerHTML = Math.round(
             response.data.list[index].main.temp
           );
-          forecast_wind[i].innerHTML = Math.round(
+          forecast_wind[day].innerHTML = Math.round(
             response.data.list[index].wind.speed
           );
   
@@ -87,25 +116,25 @@ function currentWeather(city) {
             max_temp[j] = response.data.list[index - 4 + j].main.temp_max;
           }
   
-          forecast_min_temp[i].innerHTML = Math.round(Math.min(...min_temp));
-          forecast_max_temp[i].innerHTML = Math.round(Math.max(...max_temp));
+          forecast_min_temp[day].innerHTML = Math.round(Math.min(...min_temp));
+          forecast_max_temp[day].innerHTML = Math.round(Math.max(...max_temp));
           if (response.data.list[index].clouds.all > 80) {
             if (response.data.list[index].weather.main === "Rain") {
-              clouds_emoji[i].innerHTML = "🌧";
+              clouds_emoji[day].innerHTML = "🌧";
             }
-            clouds_emoji[i].innerHTML = "☁️";
+            clouds_emoji[day].innerHTML = "☁️";
           } else if (
             response.data.list[index].clouds.all > 20 &&
             response.data.list[index].clouds.all < 80
           ) {
-            clouds_emoji[i].innerHTML = "🌤";
+            clouds_emoji[day].innerHTML = "🌤";
           } else {
-            clouds_emoji[i].innerHTML = "☀️";
+            clouds_emoji[day].innerHTML = "☀️";
           }
         }
       });
     }
-  }
+  )}
   function forecast(city_name) {
     let forecastApiURL = `https://api.openweathermap.org/data/2.5/forecast?q=${city_name}&appid=${weather_appid}&units=${units}`;
     axios.get(forecastApiURL).then(showForecast);
@@ -145,6 +174,7 @@ function currentWeather(city) {
   searchForm.addEventListener("submit", search);
   
   showCurrentLocation();
+  showForecastHTML();
   
   let weather_appid = "c558530bb05c403b5dd2f204254ec041";
   let units = "metric";

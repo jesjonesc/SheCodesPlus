@@ -150,5 +150,19 @@ body {
     }
 #footer-github-link:hover{
     color: #b4b6b8;
-    }
-  
+}
+#footer-github-link{
+  width: 100%;
+  position: fixed;
+  bottom: 10px;
+  text-align: center;
+
+}
+#footer-github-link a:hover{
+  color: #b4b6b8;
+}
+#footer-github-link a{
+text-decoration: none;
+  color: #5a6275;
+}
+
