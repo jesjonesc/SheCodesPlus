@@ -21,24 +21,25 @@ function currentWeather(city) {
     fahrenheit.removeEventListener("click", changeToFahrenheit);
     celsius.addEventListener("click", changeToCelsius);
   }
-  
-  function showTemperature(response) {
-    setInterval(function (){
+  function currentTime(timezone){
     let currentTime = document.querySelector("#current-time");
-    now= new Date();
-    let dt = new Date((new Date().getTime())+(response.data.timezone+(now.getTimezoneOffset()*60))*1000)
+    let dt = new Date((new Date().getTime())+(timezone+(now.getTimezoneOffset()*60))*1000)
     let day = days[dt.getDay()];
     let month = months[dt.getMonth()];
     let minutes=dt.getMinutes();
     let houres = dt.getHours();
     if (minutes<10){
-      minutes = `0${minutes}`;
+     minutes = `0${minutes}`;
     }
     if(houres<10){
-      houres = `0${houres}`;
+     houres = `0${houres}`;
     }
-    currentTime.innerHTML = `Local time:<br>${day}, ${dt.getDate()} ${month} ${houres}:${minutes}`;
-    },1000); 
+    currentTime.innerHTML = `Local time:<br>${day}, ${dt.getDate()} ${month} ${houres}:${minutes}`;  
+}
+  
+  function showTemperature(response) {
+    currentTime(response.data.timezone);
+    
     let currentTemp = document.querySelector("#current-temperature");
     let currentWind = document.querySelector("#current-wind");
     currentTemp.innerHTML = Math.round(response.data.main.temp);
