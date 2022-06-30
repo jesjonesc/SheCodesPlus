@@ -22,6 +22,7 @@ function currentWeather(city) {
     celsius.addEventListener("click", changeToCelsius);
   }
   function currentTime(timezone){
+    let now = new Date();
     let currentTime = document.querySelector("#current-time");
     let dt = new Date((new Date().getTime())+(timezone+(now.getTimezoneOffset()*60))*1000)
     let day = days[dt.getDay()];
@@ -35,11 +36,13 @@ function currentWeather(city) {
      houres = `0${houres}`;
     }
     currentTime.innerHTML = `Local time:<br>${day}, ${dt.getDate()} ${month} ${houres}:${minutes}`;  
-}
+  }
   
   function showTemperature(response) {
+
     currentTime(response.data.timezone);
-    
+    interval = setInterval(currentTime,1000,response.data.timezone);
+
     let currentTemp = document.querySelector("#current-temperature");
     let currentWind = document.querySelector("#current-wind");
     currentTemp.innerHTML = Math.round(response.data.main.temp);
@@ -61,6 +64,7 @@ function currentWeather(city) {
     let response_data = response.data.daily;
     let forecast_element = document.querySelector("#forecast");
     let forecastHTML = `<div class="row d-flex justify-content-center">`;
+    let now = new Date();
     let tomorrow = new Date(now);
     response_data.shift();
     response_data.forEach(function (el, day){
@@ -110,6 +114,7 @@ function currentWeather(city) {
   }
   
   function search(event) {
+    clearInterval(interval);
     event.preventDefault();
     let current_city = document.querySelector("#current-city");
     let search_field = document.querySelector(".searchField");
@@ -142,7 +147,6 @@ function currentWeather(city) {
   let currentLocation = document.querySelector("#current-location-button");
   currentLocation.addEventListener("click", showCurrentLocation);
   
-  let now = new Date();
   let months = [
     "Jan",
     "Feb",
@@ -158,4 +162,4 @@ function currentWeather(city) {
     "Dec"
   ];
   let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  
+  let interval = null;
