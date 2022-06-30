@@ -55,10 +55,6 @@ function currentWeather(city) {
     current_emoji.innerHTML = `<img src="https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png" alt="${response.data.weather[0].main}" width=80>`;
     forecast(response.data.coord);
   }
-  function showForecastHTML(){
-    
-    
-  }
   function showForecast(response) {
     
     let response_data = response.data.daily;
@@ -91,6 +87,10 @@ function currentWeather(city) {
     });
     forecastHTML=forecastHTML+`</div>`
     forecast_element.innerHTML=forecastHTML;
+    scale = document.querySelectorAll(".temperature-scale");    
+    temp = document.querySelectorAll(".temperature");
+    if(units === "imperial"){scale.forEach((element) => (element.innerHTML = "°F"));}
+    
   }
   
   function forecast(coordinates) {
@@ -106,6 +106,7 @@ function currentWeather(city) {
       .then((response) => {
         let currentCity = document.querySelector("#current-city");
         currentCity.innerHTML = response.city;
+        clearInterval(interval);
         currentWeather(response.city);
       })
       .catch((data, status) => {
@@ -129,24 +130,11 @@ function currentWeather(city) {
     });
     search_field.value= "";
   }
-  let searchForm = document.querySelector("#search-form");
-  searchForm.addEventListener("submit", search);
-  
-  showCurrentLocation();
-  showForecastHTML();
-  
   let weather_appid = "c558530bb05c403b5dd2f204254ec041";
   let units = "metric";
-  let temp = document.querySelectorAll(".temperature");
-  let scale = document.querySelectorAll(".temperature-scale");
-  let fahrenheit = document.querySelector("#fahrenheit");
-  let celsius = document.querySelector("#celsius");
-  
-  fahrenheit.addEventListener("click", changeToFahrenheit);
   
   let currentLocation = document.querySelector("#current-location-button");
   currentLocation.addEventListener("click", showCurrentLocation);
-  
   let months = [
     "Jan",
     "Feb",
@@ -163,3 +151,15 @@ function currentWeather(city) {
   ];
   let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   let interval = null;
+
+  let searchForm = document.querySelector("#search-form");
+  searchForm.addEventListener("submit", search);
+  
+  showCurrentLocation();
+  let scale, temp;
+  let fahrenheit = document.querySelector("#fahrenheit");
+  let celsius = document.querySelector("#celsius");
+  fahrenheit.addEventListener("click", changeToFahrenheit);
+  
+  
+  
