@@ -21,7 +21,11 @@ function currentWeather(city) {
     fahrenheit.removeEventListener("click", changeToFahrenheit);
     celsius.addEventListener("click", changeToCelsius);
   }
+  
   function showTemperature(response) {
+    setInterval(function (){
+    let currentTime = document.querySelector("#current-time");
+    now= new Date();
     let dt = new Date((new Date().getTime())+(response.data.timezone+(now.getTimezoneOffset()*60))*1000)
     let day = days[dt.getDay()];
     let month = months[dt.getMonth()];
@@ -33,8 +37,8 @@ function currentWeather(city) {
     if(houres<10){
       houres = `0${houres}`;
     }
-    let currentTime = document.querySelector("#current-time");
-    currentTime.innerHTML = `Local time:<br>${day}, ${dt.getDate()} ${month} ${houres}:${minutes}`;  
+    currentTime.innerHTML = `Local time:<br>${day}, ${dt.getDate()} ${month} ${houres}:${minutes}`;
+    },1000); 
     let currentTemp = document.querySelector("#current-temperature");
     let currentWind = document.querySelector("#current-wind");
     currentTemp.innerHTML = Math.round(response.data.main.temp);
