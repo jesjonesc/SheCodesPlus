@@ -22,6 +22,19 @@ function currentWeather(city) {
     celsius.addEventListener("click", changeToCelsius);
   }
   function showTemperature(response) {
+    let dt = new Date((new Date().getTime())+(response.data.timezone+(now.getTimezoneOffset()*60))*1000)
+    let day = days[dt.getDay()];
+    let month = months[dt.getMonth()];
+    let minutes=dt.getMinutes();
+    let houres = dt.getHours();
+    if (minutes<10){
+      minutes = `0${minutes}`;
+    }
+    if(houres<10){
+      houres = `0${houres}`;
+    }
+    let currentTime = document.querySelector("#current-time");
+    currentTime.innerHTML = `Local time:<br>${day}, ${dt.getDate()} ${month} ${houres}:${minutes}`;  
     let currentTemp = document.querySelector("#current-temperature");
     let currentWind = document.querySelector("#current-wind");
     currentTemp.innerHTML = Math.round(response.data.main.temp);
@@ -47,8 +60,7 @@ function currentWeather(city) {
     response_data.shift();
     response_data.forEach(function (el, day){
       tomorrow.setDate(tomorrow.getDate() + 1);
-      console.log(response_data[day]);
-      forecastHTML = forecastHTML + `<div class="forecast-wrap">
+      forecastHTML = forecastHTML + `<div class="col-auto">
       <div class="forecast">
         <h6 class="week-day">${
         days[tomorrow.getDay()]
@@ -74,7 +86,6 @@ function currentWeather(city) {
   
   function forecast(coordinates) {
     let forecastApiURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&exclude=current,hourly,minutely,alerts&appid=${weather_appid}&units=${units}`
-    console.log(forecastApiURL);
     axios.get(forecastApiURL).then(showForecast);
     axios.get(forecastApiURL).catch((data, status) => {
       console.log("Something is wrong");
@@ -127,8 +138,6 @@ function currentWeather(city) {
   currentLocation.addEventListener("click", showCurrentLocation);
   
   let now = new Date();
-  
-  let currentTime = document.querySelector("#current-time");
   let months = [
     "Jan",
     "Feb",
@@ -143,8 +152,5 @@ function currentWeather(city) {
     "Nov",
     "Dec"
   ];
-  let month = months[now.getMonth()];
   let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  let day = days[now.getDay()];
-  currentTime.innerHTML = `Last updated:<br>${day}, ${now.getDate()} ${month} ${now.getHours()}:${now.getMinutes()}`;
   

@@ -121,9 +121,7 @@ body {
   #forecast{
     margin-bottom: 50px;
   }
-  .forecast-wrap{
-    width: fit-content;
-  }
+
   .forecast {
     display: inline-block;
     line-height: normal;
