@@ -1,186 +1,211 @@
 body {
     background-color: #d9edfe;
     font-family: "Hind Siliguri", sans-serif;
-  }
-  
-  .searchBox {
-    margin-top: 20px;
-    width: 100%;
-  }
-  .searchBox form {
-    display: block;
-    margin: auto;
-    width: 60%;
-  }
-  .searchField {
-    width: 75%;
-    background: transparent;
-    border: #bbdffb solid 3px;
-    font-size: 10pt;
-    padding: 5px;
-    border-radius: 3px;
-    outline: none;
-  }
-  .searchButton {
-    width: 23%;
-    background: #bbdffb;
-    border: #bbdffb solid 4px;
-    padding: 6px 0;
-    font-size: 10pt;
-    border-radius: 3px;
-  }
-  .searchButton:hover {
-    background-color: #c3e0fa;
-    border: #c3e0fa solid 4px;
-  }
-  .searchBox form a {
-    color: #5a6275;
-    display: inline;
-    font-size: 10pt;
-    text-decoration: none;
-  }
-  
-  .searchBox form a:hover {
-    color: #b4b6b8;
-  }
-  
-  .scale {
-    margin-top: 5px;
-    font-size: 18px;
-    display: inline;
-    float: right;
-    margin-right: 20px;
-  }
-  .scale a {
-    color: black;
-    text-decoration: none;
-    color: #5a6275;
-  }
-  
-  .scale a:hover {
-    color: #b4b6b8;
-    text-decoration: none;
-  }
-  
-  .weatherTodayWrap {
-    display: block;
-    margin: auto;
-    width: 100%;
-  }
-  .weatherTodayContainer {
-    width: 60%;
-    display: block;
-    margin: auto;
-    margin-top: 20px;
-    max-width: 400px;
-  }
-  .weatherPositioning {
-    width: 75%;
-  }
-  .leftBox {
-    float: left;
-  }
-  .leftBox h2 {
-    font-weight: 500;
-    text-transform: capitalize;
-    margin-bottom: 0;
-  }
-  .leftBox p {
-    font-weight: 400;
-    color: #5a6275;
-    font-size: 14px;
-    line-height: 16px;
-  }
-  .rightBox {
-    margin-right: 0;
-  }
-  .rightBox h2 {
-    font-weight: 500;
-    margin-bottom: 0;
-  }
-  .rightBox {
-    text-align: right;
-  }
-  .rightBox p {
-    color: #5a6275;
-    font-size: 14px;
-    line-height: 16px;
-  }
-  .centralBox {
-    margin: auto;
-    display: block;
-    width: 80px;
-  }
-  
-  .centralBox h1 {
-    opacity: 80%;
-    position: absolute;
-    z-index: -1;
-    margin-top: -15px;
-  }
-  #forecast{
-    margin-bottom: 50px;
-  }
-
-  .forecast {
-    display: inline-block;
-    line-height: normal;
-    vertical-align: middle;
-    margin-top: 20px;
-    color: #5a6275;
-    border: #bbdffb solid 3px;
-    padding: 15px 30px 15px 15px;
-    background-color: #bbdffb;
-    border-radius: 50% 20% / 10% 40%;
-  }
-  .forecast:hover {
-    background-color: #d4e9fd;
-  }
-  
-  .forecast h6 {
-    margin-bottom: 10px;
-  }
-  .forecast h1,
-  h2 {
-    display: inline;
-    font-weight: 300;
-    font-size: 20px;
-  }
-  .clouds-emoji{
-    opacity: 80%;
-    float: right;
-    margin-top: -20px;
-    margin-left: 5px;
-    position:absolute;
-  }
-  
-  .forecast p {
-    font-size: 10pt;
-
-  }
-  #footer-github-link{
-      text-align: center;
-      position: fixed;
-      bottom: 10px;
-      text-decoration: none;
-      color: #5a6275;
-    }
-#footer-github-link:hover{
-    color: #b4b6b8;
 }
-#footer-github-link{
-  background-color: #d9edfe;
+  
+.searchBox {
   width: 100%;
-  bottom: 0;
-  position: fixed;
-  text-align: center;
-
+  max-width: 800px;
+  display: block;
+  margin: 20px auto;
 }
-#footer-github-link a:hover{
+.searchBox form {
+  display: block;
+  margin: auto;
+  width: 60%;
+}
+.searchField {
+  width: 75%;
+  background: transparent;
+  border: #bbdffb solid 3px;
+  font-size: 10pt;
+  padding: 5px;
+  border-radius: 3px;
+  outline: none;
+}
+.searchButton {
+  width: 23%;
+  background: #bbdffb;
+  border: #bbdffb solid 4px;
+  padding: 6px 0;
+  font-size: 10pt;
+  border-radius: 3px;
+}
+.searchButton:hover {
+  background-color: #c3e0fa;
+  border: #c3e0fa solid 4px;
+}
+.searchBox form a {
+  color: #5a6275;
+  display: inline;
+  font-size: 10pt;
+  text-decoration: none;
+}
+
+.searchBox form a:hover {
   color: #b4b6b8;
 }
-#footer-github-link a{
-text-decoration: none;
+
+.scale {
+  margin-top: 5px;
+  font-size: 18px;
+  display: inline;
+  float: right;
+  margin-right: 20px;
+}
+.scale a {
+  color: black;
+  text-decoration: none;
   color: #5a6275;
 }
 
+.scale a:hover {
+  color: #b4b6b8;
+  text-decoration: none;
+}
+
+.weatherTodayWrap {
+  display: block;
+  margin: auto;
+  width: 100%;
+}
+.weatherTodayContainer {
+  width: 60%;
+  display: block;
+  margin: auto;
+  margin-top: 20px;
+  max-width: 400px;
+}
+.weatherPositioning {
+  display: block;
+  margin: auto;
+  width: 75%;
+}
+.leftBox {
+  float: left;
+}
+.leftBox h2 {
+  font-weight: 500;
+  text-transform: capitalize;
+  margin-bottom: 0;
+}
+.leftBox p {
+  font-weight: 400;
+  color: #5a6275;
+  font-size: 14px;
+  line-height: 16px;
+}
+.rightBox {
+  margin-right: 0;
+}
+.rightBox h2 {
+  font-weight: 500;
+  margin-bottom: 0;
+}
+.rightBox {
+  text-align: right;
+}
+.rightBox p {
+  color: #5a6275;
+  font-size: 14px;
+  line-height: 16px;
+}
+.centralBox {
+  margin: auto;
+  display: block;
+  width: 80px;
+}
+
+.centralBox h1 {
+  opacity: 80%;
+  position: absolute;
+  z-index: -1;
+  margin-top: -15px;
+}
+#forecast{
+  margin-bottom: 50px;
+}
+
+.forecast {
+  display: inline-block;
+  line-height: normal;
+  vertical-align: middle;
+  margin-top: 20px;
+  color: #5a6275;
+  border: #bbdffb solid 3px;
+  padding: 15px 30px 15px 15px;
+  background-color: #bbdffb;
+  border-radius: 50% 20% / 10% 40%;
+}
+
+.forecast h6 {
+  margin-bottom: 10px;
+}
+.forecast h1,
+h2 {
+  display: inline;
+  font-weight: 300;
+  font-size: 20px;
+}
+.clouds-emoji{
+  opacity: 80%;
+  float: right;
+  margin-top: -20px;
+  margin-left: 5px;
+  position:absolute;
+}
+.forecast:hover{
+  background-color:#B2DBFA;
+  border-color:  #B2DBFA;
+}
+
+.forecast p {
+  font-size: 10pt;
+
+}
+#footer-github-link{
+    text-align: center;
+    position: fixed;
+    bottom: 10px;
+    text-decoration: none;
+    color: #5a6275;
+  }
+#footer-github-link:hover{
+  color: #b4b6b8;
+}
+#footer-github-link{
+background-color: #d9edfe;
+width: 100%;
+bottom: 0;
+position: fixed;
+text-align: center;
+
+}
+#footer-github-link a:hover{
+color: #b4b6b8;
+}
+#footer-github-link a{
+text-decoration: none;
+color: #5a6275;
+}
+
+
+@media (max-width: 450px) {
+  .weatherTodayContainer {
+    width: 60%;;
+  }
+  .searchBox form {
+    width: 70%;
+  }
+  .scale {
+    margin-right: 10px;
+  }
+}
+@media (max-width: 350px) {
+  .weatherTodayContainer {
+    width: 75%;;
+  }
+  .weatherPositioning {
+    width: 100%;
+  }
+}
