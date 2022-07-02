@@ -192,7 +192,10 @@ color: #5a6275;
 
 @media (max-width: 450px) {
   .weatherTodayContainer {
-    width: 60%;;
+    width: 65%;;
+  }
+  .weatherPositioning {
+    width: 100%;
   }
   .searchBox form {
     width: 70%;
